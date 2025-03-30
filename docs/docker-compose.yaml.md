@@ -36,7 +36,7 @@ database:
 - **image: mysql:8.0**: Uses the official MySQL 8.0 image from Docker Hub
 - **container_name: database**: Names the container "database" for easy reference
 - **networks: - wp-db-network**: Connects this container to the wp-db-network (used for database connections)
-- **volumes: - mysql_data:/var/lib/mysql**: Mounts the mysql_data volume to /var/lib/mysql inside the container, ensuring data persistence
+- **volumes: - mysql_data:/var/lib/mysql**: Mounts the named Docker volume `mysql_data` to the `/var/lib/mysql` directory inside the container. This is where MySQL stores all database files, tables, and data. Using a named volume ensures your database data persists between container restarts or even if the container is completely removed.
 - **env_file: .env**: Loads environment variables from the .env file
 - **environment**: Sets specific environment variables for MySQL:
   - **MYSQL_ROOT_PASSWORD**: Sets the root password from the .env file
@@ -71,7 +71,7 @@ wordpress:
 - **networks**: Connects to two networks:
   - **wp-network**: For communication with Nginx
   - **wp-db-network**: For communication with the database
-- **volumes: - ./wordpress:/var/www/html**: Mounts the local ./wordpress directory to /var/www/html in the container, storing WordPress files locally
+- **volumes: - ./wordpress:/var/www/html**: Mounts the local ./wordpress directory to /var/www/html in the container, storing WordPress files locally. This is useful because having the wordpress files locally allows you to make changes without needing to acccess or modify the container.
 - **env_file: .env**: Loads environment variables from the .env file
 - **environment**: Sets specific environment variables for WordPress:
   - **WORDPRESS_DB_HOST**: Points to the database container
@@ -102,6 +102,8 @@ nginx:
 - **ports**: Maps container ports to host ports:
   - **80:80**: HTTP port
   - **443:443**: HTTPS port
+
+  these ports are exposed to the external world.
 - **container_name: nginx**: Names the container "nginx" for easy reference
 - **networks: - wp-network**: Connects to the wp-network for communication with WordPress
 - **volumes**: Mounts several directories:
