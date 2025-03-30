@@ -223,4 +223,26 @@ server {
 - `ssl_ciphers "ECDHE-ECDSA-AES128-GCM-SHA256:...";` - A list of allowed encryption ciphers, ordered from most to least preferred
     - These are all modern, secure ciphers that provide forward secrecy
     - The long string includes multiple cipher options for compatibility with different clients
-- `ssl_session_cache shared:le_nginx_SSL:10m;` - Allocates 10MB of shared memory for
+- `ssl_session_cache shared:le_nginx_SSL:10m;` - Allocates 10MB of shared memory for SSL session caching to improve performance
+
+**Security Headers**
+- `X-Content-Type-Options nosniff` - Prevents browsers from MIME-sniffing a response away from declared content type
+- `X-Frame-Options DENY` - Prevents the page from being displayed in a frame, protecting against clickjacking
+- `X-XSS-Protection "1; mode=block"` - Enables XSS protection in browsers
+- `Referrer-Policy "no-referrer"` - Controls the referrer information sent with requests
+- `Content-Security-Policy "script-src 'self'; object-src 'self'"` - Restricts where resources can be loaded from
+- `Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"` - Enforces HTTPS and prevents SSL stripping attacks
+
+**Rate Limiting**
+- `limit_req zone=wordpress burst=5 nodelay;` - Limits requests to WordPress login and XML-RPC endpoints
+    - `zone=wordpress` - References the rate limit zone defined in the nginx.conf
+    - `burst=5` - Allows bursts of up to 5 requests
+    - `nodelay` - Applies the rate limit immediately without delay
+
+**Location Blocks**
+- `/` - Main location block that tries to serve static files first, then falls back to index.php
+- `\.php$` - Handles PHP files by passing them to the WordPress FastCGI process
+- `\.(js|css|png|jpg|jpeg|gif|ico|svg)$` - Serves static files with maximum cache expiration
+- `^/(wp-login\.php|xmlrpc\.php)` - Special handling for WordPress login and XML-RPC endpoints with rate limiting
+- `/favicon.ico` - Special handling for favicon requests
+- `/robots.txt` - Special handling for robots.txt file
