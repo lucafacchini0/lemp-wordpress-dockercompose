@@ -1,4 +1,5 @@
-# 🚀 Wordpress with Docker: Nginx, mySQL, phpMyAdmin and SSL Config
+# 🚀 Wordpress with Docker-Compose: Nginx, mySQL, phpMyAdmin and SSL Config
+by Luca Facchini ([lucafacchini0](https://github.com/lucafacchini0))
 
 A complete, production-ready WordPress environment with SSL support, running in Docker containers. This setup includes Nginx as a web server with SSL termination, WordPress with PHP-FPM, MySQL for database storage, and phpMyAdmin for database management.
 
@@ -23,7 +24,7 @@ A complete, production-ready WordPress environment with SSL support, running in 
 
 ```bash
 git clone https://github.com/lucafacchini0/setup-worpress-dockercompose.git
-cd securepress
+cd setup-worpress-dockercompose
 ```
 
 ### Step 2: Generate SSL Certificates
