@@ -48,7 +48,6 @@ sudo openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
 
 ```bash
 # Edit the .env file with your settings
-cp .env.example .env
 nano .env
 ```
 
@@ -67,9 +66,10 @@ SQL_DATABASE_PASSWORD=your_secure_password
 Edit the Nginx configuration file to use your domain name:
 
 ```bash
-sed -i 's/YOUR_DOMAIN/yourdomain.com/g' nginx/conf.d/YOUR_DOMAIN.com
-mv nginx/conf.d/YOUR_DOMAIN.com nginx/conf.d/yourdomain.com
+nano nginx/conf.d/YOUR_DOMAIN.com.conf
 ```
+
+and replace YOUR_DOMAIN with the domain you generated SSL Certificates for.
 
 ### Step 5: Start the Containers
 
@@ -84,7 +84,7 @@ Visit `https://yourdomain.com` in your browser and follow the WordPress installa
 ## 🔧 Accessing Services
 
 - **WordPress**: https://yourdomain.com
-- **phpMyAdmin**: http://localhost:8080 (only accessible from the server)
+- **phpMyAdmin**: http://localhost:8080 (only accessible from the local server)
 
 ## 🔄 Maintenance
 
