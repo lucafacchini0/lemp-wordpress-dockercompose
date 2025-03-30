@@ -23,8 +23,8 @@ A complete, production-ready WordPress environment with SSL support, running in 
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/lucafacchini0/setup-worpress-dockercompose.git
-cd setup-worpress-dockercompose
+git clone https://github.com/lucafacchini0/setup-wordpress-dockercompose.git
+cd setup-wordpress-dockercompose
 ```
 
 ### Step 2: Generate SSL Certificates
