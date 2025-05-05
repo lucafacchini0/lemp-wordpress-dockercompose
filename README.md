@@ -1,4 +1,4 @@
-# 🚀 Wordpress with Docker-Compose: Nginx, mySQL, phpMyAdmin and SSL Config
+# 🚀 LEMP Wordpress & SSL with Docker-Compose
 by Luca Facchini ([lucafacchini0](https://github.com/lucafacchini0))
 
 A complete, production-ready WordPress environment with SSL support, running in Docker containers. This setup includes Nginx as a web server with SSL termination, WordPress with PHP-FPM, MySQL for database storage, and phpMyAdmin for database management.
